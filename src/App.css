@@ -15,34 +15,81 @@
   justify-content: center;
 }
 
-.search_nav{
+.search_nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.search_box {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.search_box input {
+  border: none;
+  outline: none;
+  width: 20rem;
+  padding: 0.5rem;
+}
+
+.search_box button {
+  background-color: #093145;
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  margin-left: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.search_box button:hover {
+  background-color: #053d2d;
+}
+
+/* .search_nav{
   display: flex;
     justify-content: center;
     bottom: 0;
     padding: 10px;
-}
+} */
 
 .heading{
   padding-bottom: 2rem;
   text-align: center;
 }
 
-.search_box input{
-  border: 0;
-  outline: 0;
-  margin-right: 0.2rem;
-  padding: 0.3rem;
-  border-radius: 1rem;
-}
-
-.search_box button{
-  border: 0;
-  outline: 0;
-  padding: 0.3rem;
-  border-radius: 1rem;
-}
-
 .nav_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
+}
+
+.nav_container button {
+  margin: 0 1rem;
+  padding: 1rem 2rem;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 1rem;
+  background-color: #093145;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.nav_container button:hover {
+  background-color: #2e86c1;
+}
+
+
+/* .nav_container {
     display: flex;
     justify-content: center;
     bottom: 0;
@@ -56,4 +103,52 @@
     padding: 0.3rem;
     margin-right: 1.5rem;
     border-radius: 1rem;
+  } */
+
+  .history {
+    background-color: #f2f2f2;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .history h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  
+  .history button {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    padding: 5px 10px;
+    margin-top: 10px;
+    cursor: pointer;
+  }
+  
+  .history button:hover {
+    background-color: #da190b;
+  }
+  
+  .history div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+  }
+  
+  .history div button {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    padding: 3px 6px;
+    cursor: pointer;
+  }
+  
+  .history div button:hover {
+    background-color: #da190b;
   }

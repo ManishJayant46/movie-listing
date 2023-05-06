@@ -89,7 +89,7 @@ function App() {
   }, []);
 
   let pageToShow;
-
+  
   if (searchResults.total_results > 0) {
     pageToShow = (
       <div>
@@ -150,10 +150,10 @@ function App() {
         </div>
       </div>
       
-      <div>
+      <div className='history'>
         <h2>Search History</h2>
         <button onClick={deleteAllHistory}>Delete All</button>
-        {searchHistory.map((historyItem, index) => (
+        {searchHistory.slice(0,3).reverse().map((historyItem, index) => (
           <div key={index}>
             {historyItem}
             <button onClick={() => deleteHistoryItem(index)}>Delete</button>
@@ -162,12 +162,20 @@ function App() {
       </div>
 
       {pageToShow}
+
+      {!searchResults.total_results && (
+        <div className='nav_container'>
+          <button onClick={() => setCurrentPage(1)}>Page 1</button>
+          <button onClick={() => setCurrentPage(2)}>Page 2</button>
+          <button onClick={() => setCurrentPage(3)}>Page 3</button>
+        </div>
+      )}
       
-      <div className='nav_container'>
+      {/* <div className='nav_container'>
         <button onClick={() => setCurrentPage(1)}>Page 1</button>
         <button onClick={() => setCurrentPage(2)}>Page 2</button>
         <button onClick={() => setCurrentPage(3)}>Page 3</button>
-      </div>
+      </div> */}
        
     </div>
   );
