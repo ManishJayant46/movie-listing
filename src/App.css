@@ -12,16 +12,19 @@
 .movies{
   display:flex;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 .search_nav{
-  display:flex;
-  align-items: center;
-  padding-bottom: 1.5rem;
+  display: flex;
+    justify-content: center;
+    bottom: 0;
+    padding: 10px;
 }
 
 .heading{
-  padding-right: 3rem;
+  padding-bottom: 2rem;
+  text-align: center;
 }
 
 .search_box input{
@@ -38,3 +41,20 @@
   padding: 0.3rem;
   border-radius: 1rem;
 }
+
+.nav_container {
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding: 10px;
+  }
+
+  .nav_container button {
+    border: 0;
+    outline: 0;
+    padding: 0.3rem;
+    margin-right: 1.5rem;
+    border-radius: 1rem;
+  }
