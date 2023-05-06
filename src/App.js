@@ -11,6 +11,10 @@ function App() {
 
   const [movies,setMovies] = useState([])
   const [term,setTerm] = useState([]);
+  const [isError, setisError] = useState({show:false,msg:""})
+
+  const
+  
 
   useEffect(() => {
     fetch(MOVIE_URL)
@@ -20,12 +24,23 @@ function App() {
 
   console.log(movies)
 
-  const searchMovie = (event) =>{
+  const searchMovie = async (event) =>{
     event.preventDefault();
+    const response = await fetch(MOVIE_SEARCH + term)
+    const data = await response.json()
 
-    fetch(MOVIE_SEARCH + term)
-    .then(res => res.json())
-    .then(data => setMovies(data.results))
+    if(data.total_results === 0){
+      setisError({
+        show:true,
+        msg: "NO SEARCH RESULTS"
+      })
+    } else{
+      setMovies(data.results)
+      setisError({
+        show:false,
+        msg: ""
+      })
+    }
   }
 
  
@@ -33,11 +48,11 @@ function App() {
   return (
     <div className="App">
        <div className="search_nav">
-        <div>
+        <div className='heading'>
           <h1>Movie List</h1>
         </div>
 
-        <div>
+        <div className='search_box'>
           <form onSubmit={searchMovie}>
             <input onChange={(e)=> setTerm(e.target.value)}/>
             <button>Search</button>
@@ -45,11 +60,14 @@ function App() {
         </div>
       </div>
 
-      <div className='movies'>
+      {!isError.show &&<div className='movies'>
         {movies.map((movie) =>(
             <MovieCard {...movie}/>
         ))}
+      </div>}
 
+      <div className='error'>
+        <p>{isError.show && isError.msg }</p>
       </div>
      
     </div>
