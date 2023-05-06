@@ -18,6 +18,57 @@ function App() {
   const [currentPage, setCurrentPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState('');
   const [searchResults, setSearchResults] = useState([]);
+  const [searchHistory, setSearchHistory] = useState([]);
+
+  const deleteHistoryItem = (index) => {
+    
+    setSearchHistory((prevHistory) => {
+        const newHistory = [...prevHistory];
+        newHistory.splice(index, 1);
+        return newHistory;
+    });
+    };
+    
+    const deleteAllHistory = () => {
+      setSearchHistory([]);
+    };
+
+  async function fetchSearchResults(e) {
+    e.preventDefault()
+    if (!searchTerm) {
+      setSearchResults([]);
+      return;
+    }
+    console.log("inhere")
+
+    const response = await fetch(MOVIE_SEARCH + searchTerm);
+    const results = await response.json();
+    setSearchResults(results);
+    console.log(results)
+  }
+
+
+  const handleSearchSubmit = () => {
+    // setSearchHistory([...searchHistory, searchTerm]);
+    if(searchHistory.length>=3){
+      searchHistory.shift()
+    }
+    if(searchTerm.trim() !== ""){
+    // setSearchHistory((prevHistory) => [searchTerm, ...prevHistory.slice(0, 2)]);
+    setSearchHistory([...searchHistory,searchTerm]);
+    }
+  };
+
+  
+
+  useEffect(() =>{
+    const searchHistory = JSON.parse(localStorage.getItem("searchHistory")) || [];
+    setSearchHistory(searchHistory);
+  },[])
+
+  useEffect(() => {
+    localStorage.setItem("searchHistory", JSON.stringify(searchHistory));
+  }, [searchHistory]);
 
   useEffect(() => {
     async function fetchData() {
@@ -36,22 +87,6 @@ function App() {
     }
     fetchData();
   }, []);
-
-
-    async function fetchSearchResults(e) {
-      e.preventDefault()
-      if (!searchTerm) {
-        setSearchResults([]);
-        return;
-      }
-      console.log("inhere")
-
-      const response = await fetch(MOVIE_SEARCH + searchTerm);
-      const results = await response.json();
-      setSearchResults(results);
-      console.log(results)
-    }
-
 
   let pageToShow;
 
@@ -105,14 +140,27 @@ function App() {
   return (
     <div className='App'>
       <h1 className='heading'>Movie Listing</h1>
+
       <div className='search_nav'>
         <div className='search_box'>
           <form onSubmit={fetchSearchResults}>
             <input onChange={(e)=>setSearchTerm(e.target.value)}/>
-            <button>Search</button> 
+            <button onClick={handleSearchSubmit}>Search</button> 
           </form>
         </div>
       </div>
+      
+      <div>
+        <h2>Search History</h2>
+        <button onClick={deleteAllHistory}>Delete All</button>
+        {searchHistory.map((historyItem, index) => (
+          <div key={index}>
+            {historyItem}
+            <button onClick={() => deleteHistoryItem(index)}>Delete</button>
+          </div>
+        ))}
+      </div>
+
       {pageToShow}
       
       <div className='nav_container'>
@@ -121,7 +169,6 @@ function App() {
         <button onClick={() => setCurrentPage(3)}>Page 3</button>
       </div>
        
-     
     </div>
   );
 }
