@@ -6,6 +6,15 @@ import MovieCard from './MovieCard';
 
 function App() {
 
+  const [loading,setLoading] = useState(true)
+  const spinner = document.getElementById('spinner')
+  if(spinner){
+    setTimeout(()=>{
+      spinner.style.display="none";
+      setLoading(false)
+    },2000)
+  }
+
   const MOVIE_URL_1 = "https://api.themoviedb.org/3/movie/upcoming?api_key=81f382d33088c6d52099a62eab51d967&language=en-US&page=1"
   const MOVIE_URL_2 = "https://api.themoviedb.org/3/movie/upcoming?api_key=81f382d33088c6d52099a62eab51d967&language=en-US&page=2"
   const MOVIE_URL_3 = "https://api.themoviedb.org/3/movie/upcoming?api_key=81f382d33088c6d52099a62eab51d967&language=en-US&page=3"
@@ -33,6 +42,8 @@ function App() {
   const deleteAllHistory = () => {
     setSearchHistory([]);
   };
+
+  
 
   async function fetchSearchResults(e) {
     e.preventDefault()
@@ -146,6 +157,7 @@ function App() {
  
 
   return (
+    !loading && (
     <div className='App'>
       <h1 className='heading'>Movie Listing</h1>
 
@@ -341,18 +353,18 @@ function App() {
           </div>
         ))}
       </div>
-
       {pageToShow}
 
       {!searchResults.total_results && (
         <div className='nav_container'>
-          <button onClick={() => setCurrentPage(1)}>Page 1</button>
-          <button onClick={() => setCurrentPage(2)}>Page 2</button>
-          <button onClick={() => setCurrentPage(3)}>Page 3</button>
+          {currentPage === 1 ? <button className='selected_button' onClick={() => setCurrentPage(1)}>Page 1</button> : <button onClick={() => setCurrentPage(1)}>Page 1</button>}
+          {currentPage === 2 ? <button className='selected_button' onClick={() => setCurrentPage(2)}>Page 2</button> : <button onClick={() => setCurrentPage(2)}>Page 2</button>}
+          {currentPage === 3 ? <button className='selected_button' onClick={() => setCurrentPage(3)}>Page 3</button> : <button onClick={() => setCurrentPage(3)}>Page 3</button>}
         </div>
       )}
       
     </div>
+    )
   );
 }
 

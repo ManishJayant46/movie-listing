@@ -51,7 +51,7 @@
 }
 
 .search_box button:hover {
-  background-color: #053d2d;
+  background-color: #1496BB;
 }
 
 .search_box select {
@@ -93,7 +93,11 @@
 }
 
 .nav_container button:hover {
-  background-color: #2e86c1;
+  background-color: #1496BB;
+}
+
+.nav_container .selected_button{
+  background-color: #1496BB;
 }
 
 
