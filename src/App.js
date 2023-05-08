@@ -116,7 +116,7 @@ function App() {
   if (searchResults.total_results > 0) {
     pageToShow = (
       <div>
-        <h1 className='heading'>Search Results</h1>
+        <h2 className='heading'>Search Results</h2>
         <div className='movies'>
           {searchResults.results.map((movie) =>(
             <MovieCard {...movie}/>
@@ -127,7 +127,7 @@ function App() {
   } else if (currentPage === 1) {
     pageToShow = (
       <div>
-        <h1 className='heading'>Page 1</h1>
+        <h2 className='heading'>Page 1</h2>
         <div className='movies'>
           {data1.map((movie) =>(
             <MovieCard {...movie}/>
@@ -138,7 +138,7 @@ function App() {
   } else if (currentPage === 2) {
     pageToShow = (
       <div>
-        <h1 className='heading'>Page 2</h1>
+        <h2 className='heading'>Page 2</h2>
         <div className='movies'>
           {data2.map((movie) =>(
             <MovieCard {...movie}/>
@@ -149,7 +149,7 @@ function App() {
   } else if (currentPage === 3) {
     pageToShow = (
       <div>
-        <h1 className='heading'>Page 3</h1>
+        <h2 className='heading'>Page 3</h2>
         <div className='movies'>
           {data3.map((movie) =>(
             <MovieCard {...movie}/>
