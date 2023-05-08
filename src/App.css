@@ -68,9 +68,16 @@
     padding: 10px;
 } */
 
-.heading{
+.heading {
   padding-bottom: 2rem;
   text-align: center;
+}
+
+.heading a{
+  padding-bottom: 2rem;
+  text-align: center;
+  color:black;
+  text-decoration: none;
 }
 
 .nav_container {

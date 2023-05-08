@@ -43,6 +43,10 @@ function App() {
     setSearchHistory([]);
   };
 
+  function refresh(){
+    window.location.reload();
+  }
+
   
 
   async function fetchSearchResults(e) {
@@ -159,7 +163,7 @@ function App() {
   return (
     !loading && (
     <div className='App'>
-      <h1 className='heading'>Movie Listing</h1>
+      <h1 className='heading'><a href={window.location.href}>Movie Listing</a></h1>
 
       <div className='search_nav'>
         <div className='search_box'>
